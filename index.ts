@@ -12,7 +12,7 @@ const server = require('aedes-server-factory').createServer(aedes);
 const port = 1883;
 
 server.listen(port, function () {
-  console.log('server started and listening on port ', port);
+  console.log('MQTT server started and listening on port ', port);
   startZ2M();
 });
 
@@ -26,6 +26,6 @@ async function startZ2M() {
   client.on('connect', (packet) => { console.log("Client Connected".grey) });
   client.on('message', (topic, payload, packet) => console.log("Client Received".grey, topic, payload.toString().startsWith("{") ? JSON.parse(payload.toString()) : payload.toString().grey ));
   */
-  await z2m.start();
+  await z2m.start(true);
 }
 
